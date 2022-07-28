@@ -9,7 +9,7 @@ export const Product: React.FC<IProductProps> = ({ product }) => {
   const [details, setDetails] = React.useState(false);
 
   return (
-    <div className='flex flex-col w-[29%] m-4 shadow-lg'>
+    <div className='flex flex-col w-[29%] m-5 shadow-lg'>
       <img src={product.images[0]} alt={product.title} className='w-[100%] h-[200px]' />
       <div className='p-2 m-1'>
         <p>Title: {product.title}</p>
@@ -18,7 +18,7 @@ export const Product: React.FC<IProductProps> = ({ product }) => {
       </div>
      
       <button
-        className='py-2 px-3 border bg-yellow-400 cursor-pointer mb-2 '
+        className='py-2 px-3 border bg-yellow-300 hover:bg-yellow-500 hover:text-white hover:font-semibold cursor-pointer mb-2 '
         onClick={() => setDetails(prev => !prev)}
       >{details ? 'Hide Details' : 'Show Details'}
       </button>

@@ -1,13 +1,23 @@
 import React from 'react'
-import { Header } from './components/Header'
+import { Route, Routes } from 'react-router-dom'
+
+import { Loyout } from './components/Layout'
+import { Basket } from './pages/Basket'
 import { Products } from './pages/Products'
 
 export const App = () => {
   return (
     <div>
-      <Header />
-      <Products />
+      <Loyout />
+      <Routes>
+     
+     
+      <Route path='/' element={<Products />} />
+      <Route path='/basket' element={<Basket /> } />
+    </Routes>
     </div>
+    
+    
   )
 }
 

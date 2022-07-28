@@ -1,5 +1,7 @@
-import axios from "axios";
 import React from "react";
+
+import axios from "axios";
+
 import { IProduct } from "../interface";
 import { ProductsContext } from "./ProductsContext";
 
@@ -15,6 +17,8 @@ export const ProductsProvider: React.FC<IProductsProvider> = ({children}) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [limitProducts, setLimitProducts] = React.useState(10);
   const [currentPage, setCurrentPage] = React.useState(1);
+  
+
   
   const getAllProducts = async (limit: number, skip: number) => {
     setIsLoading(true)
@@ -32,6 +36,11 @@ export const ProductsProvider: React.FC<IProductsProvider> = ({children}) => {
   const handleCategorySelect = async (categoryName: string[] | string) => {
     const res = await axios.get(`https://dummyjson.com/products/category/${categoryName}`)
     setProducts(res.data);
+  }
+
+  const handleSearchProducts = async (item:string) => {
+    const res = await axios.get(`https://dummyjson.com/products/search?q=${item}`);
+    setProducts(res.data)
   }
 
    const handlerPagination = async (limit:number, skip:number, count:number) => {
@@ -75,8 +84,8 @@ export const ProductsProvider: React.FC<IProductsProvider> = ({children}) => {
       );
     }
   };
-  
-  console.log(currentPage)
+
+  console.log(products)
 
   const value  = {
     products,
@@ -86,7 +95,8 @@ export const ProductsProvider: React.FC<IProductsProvider> = ({children}) => {
     handleCategorySelect,
     handlerPagination,
     isLoading,
-    renderPagination
+    renderPagination,
+    handleSearchProducts
   }
 
   React.useEffect(() => {

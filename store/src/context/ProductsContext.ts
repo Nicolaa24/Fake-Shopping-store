@@ -10,7 +10,8 @@ export interface IProductsContext {
   getCategories: () => void;
   handleCategorySelect: (categoryName: string[] | string) => void;
   handlerPagination: (limit: number, skip: number, count: number) => void;
-  renderPagination: () => React.ReactNode
+  renderPagination: () => React.ReactNode;
+  handleSearchProducts: (item:string) => void
 }
 
 
@@ -22,5 +23,6 @@ export const ProductsContext = React.createContext<IProductsContext>({
   getCategories: () => { },
   handleCategorySelect: () => { },
   handlerPagination: () => { },
-  renderPagination: () => {}
+  renderPagination: () => { },
+  handleSearchProducts: ()=>{},
 } as IProductsContext)
