@@ -1,4 +1,5 @@
 import React from 'react'
+import { useProducts } from '../context/useProducts';
 import { IProduct } from '../interface'
 
 interface IProductProps {
@@ -7,6 +8,14 @@ interface IProductProps {
 
 export const Product: React.FC<IProductProps> = ({ product }) => {
   const [details, setDetails] = React.useState(false);
+
+  const { addBasketItem, basketItems } = useProducts()
+  
+  const isExistsCart = basketItems.find(item => item.id === product.id)
+
+  const addExistItem = () => {
+    !isExistsCart && addBasketItem(product)
+  }
 
   return (
     <div className='flex flex-col w-[29%] m-5 shadow-lg'>
@@ -27,9 +36,9 @@ export const Product: React.FC<IProductProps> = ({ product }) => {
         <p>Info: {product.description}</p>
         <p>Rate: {product.rating}</p>
       </div>}
-      <button className='bg-slate-500 p-2'>
-        Add to basket
+      <button className='bg-slate-500 p-2 hover:bg-slate-700 hover:text-white hover:font-semibold' onClick={addExistItem}>
+        {isExistsCart ? 'Already in basket' : 'Add to basket'}
       </button>
     </div>
   )
-}
+};

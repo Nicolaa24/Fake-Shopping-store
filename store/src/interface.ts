@@ -14,5 +14,6 @@ export interface IProduct {
   images: Array<string>;
   rating: number;
   title: string;
+  quantity:number
 }
 

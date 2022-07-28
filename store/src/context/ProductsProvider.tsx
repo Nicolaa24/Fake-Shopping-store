@@ -17,9 +17,53 @@ export const ProductsProvider: React.FC<IProductsProvider> = ({children}) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [limitProducts, setLimitProducts] = React.useState(10);
   const [currentPage, setCurrentPage] = React.useState(1);
-  
+  //basket 
+  const [basketItems, setBasketItems] = React.useState<IProduct[]>([])
 
+
+  //basket logic
+
+  const addBasketItem = (product:IProduct) => {
+    setBasketItems([...basketItems,{...product,quantity:1}])
+  }
   
+  const deleteBasketItem = (id:number) => {
+    setBasketItems(basketItems.filter(p=>p.id !== id))
+  }
+
+  const increaseAmountBasketItem = (id: number)  => {
+    setBasketItems(() => {
+      if (basketItems.find(item => item.id === id) == null) {
+        return [...basketItems]
+      } else {
+        return basketItems.map(item => {
+          if (item.id === id) {
+            return {...item,quantity:item.quantity +1}
+          } else {
+            return item
+          }
+        })
+      }
+    })
+  }
+
+  const  decreaseAmountBasketItem = (id: number) => {
+    setBasketItems(currItems => {
+      if (basketItems.find(item => item.id === id)?.quantity === 1) {
+        return basketItems.filter(item => item.id !== id)
+      } else {
+        return basketItems.map(item => {
+          if (item.id === id) {
+            return { ...item, quantity: item.quantity - 1 }
+          } else {
+            return item
+          }
+        })
+      }
+    })
+  }
+
+  //products logic
   const getAllProducts = async (limit: number, skip: number) => {
     setIsLoading(true)
     const res = await axios.get(`https://dummyjson.com/products?limit=${limit}&skip=${skip}`)
@@ -85,18 +129,21 @@ export const ProductsProvider: React.FC<IProductsProvider> = ({children}) => {
     }
   };
 
-  console.log(products)
-
   const value  = {
     products,
     categories,
+    basketItems,
     getAllProducts,
     getCategories,
     handleCategorySelect,
     handlerPagination,
     isLoading,
     renderPagination,
-    handleSearchProducts
+    handleSearchProducts,
+    addBasketItem,
+    deleteBasketItem,
+    increaseAmountBasketItem,
+    decreaseAmountBasketItem
   }
 
   React.useEffect(() => {

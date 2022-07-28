@@ -10,15 +10,11 @@ export const App = () => {
     <div>
       <Loyout />
       <Routes>
-     
-     
-      <Route path='/' element={<Products />} />
-      <Route path='/basket' element={<Basket /> } />
-    </Routes>
+        <Route path='/' element={<Products />} />
+        <Route path='/basket' element={<Basket />} />
+      </Routes>
     </div>
-    
-    
   )
-}
+};
 
 
