@@ -22,13 +22,16 @@ export const ProductsProvider: React.FC<IProductsProvider> = ({children}) => {
 
 
   //basket logic
-
   const addBasketItem = (product:IProduct) => {
     setBasketItems([...basketItems,{...product,quantity:1}])
   }
   
   const deleteBasketItem = (id:number) => {
     setBasketItems(basketItems.filter(p=>p.id !== id))
+  }
+
+  const clearAllBasketItem = () => {
+    setBasketItems([])
   }
 
   const increaseAmountBasketItem = (id: number)  => {
@@ -47,8 +50,8 @@ export const ProductsProvider: React.FC<IProductsProvider> = ({children}) => {
     })
   }
 
-  const  decreaseAmountBasketItem = (id: number) => {
-    setBasketItems(currItems => {
+  const decreaseAmountBasketItem = (id: number) => {
+    setBasketItems(() => {
       if (basketItems.find(item => item.id === id)?.quantity === 1) {
         return basketItems.filter(item => item.id !== id)
       } else {
@@ -61,7 +64,9 @@ export const ProductsProvider: React.FC<IProductsProvider> = ({children}) => {
         })
       }
     })
-  }
+  };
+
+  
 
   //products logic
   const getAllProducts = async (limit: number, skip: number) => {
@@ -143,7 +148,8 @@ export const ProductsProvider: React.FC<IProductsProvider> = ({children}) => {
     addBasketItem,
     deleteBasketItem,
     increaseAmountBasketItem,
-    decreaseAmountBasketItem
+    decreaseAmountBasketItem,
+    clearAllBasketItem
   }
 
   React.useEffect(() => {
