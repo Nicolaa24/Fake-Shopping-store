@@ -1,15 +1,14 @@
 import React from 'react'
 import { useProducts } from '../context/useProducts'
 
-export const Categories:React.FC = () => {
+export const Categories: React.FC = () => {
   const [search, setSearch] = React.useState('');
 
-  const { categories, handleCategorySelect, getAllProducts, handleSearchProducts} = useProducts();
+  const { categories, handleCategorySelect, getAllProducts, handleSearchProducts } = useProducts();
   
   const onClickSearch = () => {
     handleSearchProducts(search)
     setSearch('')
-    console.log(search)
   }
 
   return (
@@ -18,7 +17,7 @@ export const Categories:React.FC = () => {
         <input placeholder='Search...'
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className='p-1 m-1 cursor-pointer hover:border-2 hover:font-semibold rounded-lg' />
+          className='p-1 m-1 cursor-pointer hover:border-2 hover:font-semibold rounded-lg outline-none' />
         <button className='p-1 m-1 border bg-sky-500 hover:bg-sky-700 hover:text-white hover:font-semibold rounded-lg w-[100%]'
           onClick={onClickSearch}>Search</button>
       </div>

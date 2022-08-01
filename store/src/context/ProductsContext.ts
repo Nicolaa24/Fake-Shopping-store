@@ -17,6 +17,7 @@ export interface IProductsContext {
   deleteBasketItem: (id: number) => void;
   increaseAmountBasketItem: (id: number) => void;
   decreaseAmountBasketItem: (id: number) => void;
+  clearAllBasketItem: () => void
 }
 
 
@@ -34,5 +35,6 @@ export const ProductsContext = React.createContext<IProductsContext>({
   addBasketItem: () => { },
   deleteBasketItem: () => { },
   increaseAmountBasketItem: () => { },
-  decreaseAmountBasketItem: () => {}
+  decreaseAmountBasketItem: () => { },
+  clearAllBasketItem: ()=> {}
 } as IProductsContext)

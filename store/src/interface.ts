@@ -17,3 +17,20 @@ export interface IProduct {
   quantity:number
 }
 
+export interface IAddress {
+  city: string;
+  street: string;
+  house: string;
+}
+
+export interface IOrderFields{ 
+  email: string;
+  name: string;
+  secondName: string;
+  address: IAddress;
+}
+
+export interface IOption { 
+  value: string;
+  label: string;
+}
