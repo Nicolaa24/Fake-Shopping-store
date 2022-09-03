@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+
 import { useProducts } from '../context/useProducts';
 import { IProduct } from '../interface'
 

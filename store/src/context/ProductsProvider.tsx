@@ -8,9 +8,23 @@ import { ProductsContext } from "./ProductsContext";
 
 interface IProductsProvider {
   children: React.ReactNode
+  initialTheme: string
 }
 
-export const ProductsProvider: React.FC<IProductsProvider> = ({children}) => {
+const getInitialTheme = () => {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    const storedPrefs = localStorage.getItem('current-theme');
+    if (typeof storedPrefs === 'string') {
+      return storedPrefs;
+    }
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark';
+    }
+  }
+  return 'light';
+};
+
+export const ProductsProvider: React.FC<IProductsProvider> = ({initialTheme,children}) => {
 
   const [products, setProducts] = React.useState<IProduct[]>([]);
   const [categories, setCategories] = React.useState<string[]>([]);
@@ -19,6 +33,8 @@ export const ProductsProvider: React.FC<IProductsProvider> = ({children}) => {
   const [currentPage, setCurrentPage] = React.useState(1);
   //basket 
   const [basketItems, setBasketItems] = React.useState<IProduct[]>([])
+  //theme
+  const [theme, setTheme] = React.useState(getInitialTheme);
 
 
   //basket logic
@@ -66,7 +82,6 @@ export const ProductsProvider: React.FC<IProductsProvider> = ({children}) => {
     })
   };
 
-  
 
   //products logic
   const getAllProducts = async (limit: number, skip: number) => {
@@ -134,6 +149,25 @@ export const ProductsProvider: React.FC<IProductsProvider> = ({children}) => {
     }
   };
 
+  //theme
+  const checkTheme = (existing:string) => {
+    const root = window.document.documentElement;
+    const isDark = existing === 'dark';
+
+    root.classList.remove(isDark ? 'light' : 'dark');
+    root.classList.add(existing);
+    
+    localStorage.setItem('current-theme', existing);
+  };
+
+  if (initialTheme) {
+    checkTheme(initialTheme);
+  }
+
+  React.useEffect(() => {
+    checkTheme(theme);
+  }, [theme]);
+
   const value  = {
     products,
     categories,
@@ -149,7 +183,9 @@ export const ProductsProvider: React.FC<IProductsProvider> = ({children}) => {
     deleteBasketItem,
     increaseAmountBasketItem,
     decreaseAmountBasketItem,
-    clearAllBasketItem
+    clearAllBasketItem,
+    theme,
+    setTheme
   }
 
   React.useEffect(() => {

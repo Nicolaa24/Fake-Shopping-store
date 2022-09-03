@@ -1,6 +1,7 @@
 import React from 'react'
+
 import { BasketItem } from '../components/BasketItem';
-import Modal from '../components/Modal';
+import {Modal} from '../components/Modal';
 import OrderForm from '../components/OrderForm';
 
 import { useProducts } from '../context/useProducts';
@@ -24,8 +25,8 @@ export const Basket: React.FC = () => {
   return (
     <div>
       {basketItems.length === 0
-        ? <div className=' w-[300px] m-auto text-center text-3xl font-semibold '>Basket is empty</div>
-        : <div>
+        ? <div className=' w-[300px] h-screen m-auto text-center text-3xl font-semibold dark:text-white'>Basket is empty</div>
+        : <div className='h-screen dark:text-white'>
           <div className='flex justify-between items-center text-center p-3'>
             <p className='text-3xl font-semibold'>Basket</p>
             <div>

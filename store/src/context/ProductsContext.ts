@@ -17,7 +17,9 @@ export interface IProductsContext {
   deleteBasketItem: (id: number) => void;
   increaseAmountBasketItem: (id: number) => void;
   decreaseAmountBasketItem: (id: number) => void;
-  clearAllBasketItem: () => void
+  clearAllBasketItem: () => void;
+  theme: string;
+  setTheme: React.Dispatch<React.SetStateAction<string>>
 }
 
 
@@ -36,5 +38,7 @@ export const ProductsContext = React.createContext<IProductsContext>({
   deleteBasketItem: () => { },
   increaseAmountBasketItem: () => { },
   decreaseAmountBasketItem: () => { },
-  clearAllBasketItem: ()=> {}
+  clearAllBasketItem: () => { },
+  theme: '',
+  setTheme: () =>{}
 } as IProductsContext)

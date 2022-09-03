@@ -45,7 +45,7 @@ const images = [img1, img2, img3];
     return () => clearInterval(interval)
   },[activeSlide])
 
- 
+
 
   return (
 <div className='m-3'>
@@ -60,7 +60,7 @@ const images = [img1, img2, img3];
             }
           >
             <button
-              className='text-xl border-2 border-black'
+              className='text-3xl border-2 border-black  dark:text-white'
               onClick={() => prevSliderHandler(index)}
             >
               <FiChevronLeft />
@@ -73,7 +73,7 @@ const images = [img1, img2, img3];
               />
             </div>
             <button
-              className='text-xl border-2 border-black'
+              className='text-3xl border-2 border-black  dark:text-white'
               onClick={() => nextSliderHandler(index)}
             >
               <FiChevronRight />

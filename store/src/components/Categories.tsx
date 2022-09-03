@@ -12,7 +12,7 @@ export const Categories: React.FC = () => {
   }
 
   return (
-    <div className='flex flex-wrap flex-col w-[24%] mr-4'>
+    <div className='flex flex-wrap flex-col w-[24%] mr-4 dark:text-white'>
       <div className='m-2'>
         <input placeholder='Search...'
           value={search}
@@ -22,13 +22,13 @@ export const Categories: React.FC = () => {
           onClick={onClickSearch}>Search</button>
       </div>
       <button
-        className='border m-3 rounded-lg p-1 hover:bg-slate-500 hover:font-semibold hover:text-white hover:border-black hover:border-2'
+        className='border dark:text-white m-3 rounded-lg p-1 hover:bg-slate-500 hover:font-semibold hover:text-white hover:border-black hover:border-2'
         onClick={() => { getAllProducts(10, 0) }}>
         All Products
       </button>
       {categories.map(item => (
         <button key={item} onClick={() => handleCategorySelect(item)}
-          className='border m-2 rounded-lg hover:bg-slate-500 hover:font-semibold hover:text-white hover:border-black hover:border-2 p-1'>{item}</button>
+          className='border m-2 rounded-lg  hover:bg-slate-500 hover:font-semibold hover:text-white hover:border-black hover:border-2 p-1'>{item}</button>
       ))}
     </div>
   )

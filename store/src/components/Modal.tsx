@@ -5,7 +5,7 @@ interface IModal {
   closeModal: () => void 
 }
 
-const Modal: React.FC<IModal> = ({ children,closeModal }) => {
+export const Modal: React.FC<IModal> = ({ children,closeModal }) => {
   return (
     <>
       <div
@@ -20,4 +20,3 @@ const Modal: React.FC<IModal> = ({ children,closeModal }) => {
   )
 };
 
-export default Modal

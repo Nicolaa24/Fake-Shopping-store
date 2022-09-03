@@ -18,7 +18,7 @@ export const Product: React.FC<IProductProps> = ({ product }) => {
   }
 
   return (
-    <div className='flex flex-col w-[29%] m-5 shadow-lg'>
+    <div className='flex flex-col w-[29%] m-5 shadow-lg dark:text-white'>
       <img src={product.images[0]} alt={product.title} className='w-[100%] h-[200px]' />
       <div className='p-2 m-1'>
         <p>Title: {product.title}</p>
